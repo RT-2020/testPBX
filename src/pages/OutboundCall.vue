@@ -151,14 +151,14 @@ type SipAuth = {
 }
 
 const form = ref<SipAuth>({
-  uri: 'sip:17685231413@192.168.2.227',
+  uri: 'sip:5001@192.168.2.227',
   wsServers: 'ws://192.168.2.227:5066',
-  authUser: '17685231413', //
+  authUser: '5001', //
   password: '1234',
   displayName: 'Web客户端',
 })
 
-const target = ref('sip:1001@192.168.2.227')
+const target = ref('sip:1413@192.168.2.227')
 
 // 单呼控制：注册/拨号等
 const {
@@ -242,7 +242,6 @@ const handleSendMessage = async () => {
   try {
     await sendMessage(target.value, messageText.value)
     ElMessage.success('消息发送成功')
-    messageText.value = '' // 清空输入框
   } catch (error) {
     console.error('发送消息失败:', error)
     ElMessage.error(`发送消息失败: ${error instanceof Error ? error.message : '未知错误'}`)

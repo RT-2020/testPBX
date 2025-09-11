@@ -22,6 +22,11 @@ const router = createRouter({
       name: 'OutboundCall',
       component: () => import('../pages/OutboundCall.vue'),
     },
+    {
+      path: '/sipml',
+      name: 'SIPmlCall',
+      component: () => import('../pages/SIPmlCall.vue'),
+    },
   ],
 })
 

@@ -1,6 +1,6 @@
 # testPBX
 
-This template should help get you started developing with Vue 3 in Vite.
+This is a prject for test fusionPBX Server.
 
 ## Recommended IDE Setup
 
