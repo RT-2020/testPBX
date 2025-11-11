@@ -19,8 +19,8 @@
     "@element-plus/icons-vue": "^2.3.2",
     "@vueuse/core": "^13.9.0",
     "element-plus": "^2.11.2",
+    "jssip": "^3.10.1",
     "pinia": "^3.0.3",
-    "sip.js": "^0.21.2",
     "vue": "^3.5.18",
     "vue-router": "^4.5.1"
   },

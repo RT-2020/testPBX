@@ -140,7 +140,7 @@
 <script setup lang="ts">
 import { ref, onBeforeUnmount } from 'vue'
 import { ElInput, ElButton, ElCard, ElForm, ElFormItem, ElMessage, ElSwitch } from 'element-plus'
-import { useSipClient } from '../composables/useSipClient'
+import { useJsSipClient } from '../composables/useJsSipClient'
 
 type SipAuth = {
   uri: string
@@ -151,14 +151,14 @@ type SipAuth = {
 }
 
 const form = ref<SipAuth>({
-  uri: 'sip:5001@192.168.2.227',
-  wsServers: 'ws://192.168.2.227:5066',
+  uri: 'sip:5001@192.168.2.200',
+  wsServers: 'ws://192.168.2.200:5066',
   authUser: '5001', //
   password: '1234',
   displayName: 'Web客户端',
 })
 
-const target = ref('sip:1413@192.168.2.227')
+const target = ref('sip:1413@192.168.2.200')
 
 // 单呼控制：注册/拨号等
 const {
@@ -184,7 +184,7 @@ const {
   transfer,
   sendMessage,
   diagnoseConnection,
-} = useSipClient()
+} = useJsSipClient()
 
 const messageText = ref('你好')
 const isLoading = ref(false)
@@ -202,8 +202,28 @@ const ensureRegisteredThen = async (fn: () => Promise<void>) => {
   await fn()
 }
 
-const handleRegister = () => register(form.value)
-const handleUnregister = () => unregister()
+const handleRegister = async () => {
+  try {
+    ElMessage.info('正在注册SIP账户...')
+    await register(form.value)
+    ElMessage.success('SIP注册成功！')
+  } catch (error) {
+    console.error('SIP注册失败:', error)
+    const errorMessage = error instanceof Error ? error.message : '未知错误'
+    ElMessage.error(`SIP注册失败: ${errorMessage}`)
+  }
+}
+const handleUnregister = async () => {
+  try {
+    ElMessage.info('正在注销SIP账户...')
+    await unregister()
+    ElMessage.success('SIP注销成功！')
+  } catch (error) {
+    console.error('SIP注销失败:', error)
+    const errorMessage = error instanceof Error ? error.message : '未知错误'
+    ElMessage.warning(`SIP注销失败: ${errorMessage}`)
+  }
+}
 const handleStartCall = async () => {
   if (isLoading.value) return
 

@@ -12,11 +12,11 @@ const menuList = [
     path: '/video',
   },
   {
-    name: '呼叫',
+    name: 'sipjs呼叫',
     path: '/outbound',
   },
   {
-    name: 'SIPml5',
+    name: 'SIPml5呼叫',
     path: '/sipml',
   },
 ]

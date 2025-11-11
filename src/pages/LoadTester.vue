@@ -14,7 +14,7 @@ import {
   ElTag,
   ElProgress,
 } from 'element-plus'
-import { useSipLoadTester } from '@/composables/useSipLoadTester'
+import { useJsSipLoadTester } from '@/composables/useJsSipLoadTester'
 
 type SipAuth = {
   uri: string
@@ -25,14 +25,14 @@ type SipAuth = {
 }
 
 const form = ref<SipAuth>({
-  uri: 'sip:2001@192.168.2.227',
-  wsServers: 'wss://192.168.2.227:7443',
+  uri: 'sip:2001@192.168.2.200',
+  wsServers: 'wss://192.168.2.200:7443',
   authUser: '2001',
   password: '1234',
   displayName: 'Load Bot',
 })
 
-const target = ref('sip:2002@192.168.2.227')
+const target = ref('sip:2002@192.168.2.200')
 const concurrent = ref(10)
 const callSeconds = ref(15)
 const autoHangup = ref(true)
@@ -47,7 +47,7 @@ const {
   progress,
   startLoad,
   stopLoad,
-} = useSipLoadTester()
+} = useJsSipLoadTester()
 
 const canStart = computed(() => !isRunning.value && concurrent.value > 0)
 

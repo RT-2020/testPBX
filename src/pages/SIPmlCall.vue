@@ -20,7 +20,7 @@
           <el-input v-model="form.uri" />
         </el-form-item>
         <el-form-item label="Realm/Domain">
-          <el-input v-model="form.realm" placeholder="例如：192.168.2.227 或 pbx.example.com" />
+          <el-input v-model="form.realm" placeholder="例如：192.168.2.200 或 pbx.example.com" />
         </el-form-item>
         <el-form-item label="WebSocket 服务器">
           <el-input v-model="form.wsServers" />
@@ -28,7 +28,7 @@
         <el-form-item label="Outbound Proxy（可选）">
           <el-input
             v-model="form.outboundProxy"
-            placeholder="例如：udp://192.168.2.227:5060 或 sip:domain"
+            placeholder="例如：udp://192.168.2.200:5060 或 sip:domain"
           />
         </el-form-item>
         <el-form-item label="认证用户">
@@ -156,16 +156,16 @@ type SipAuth = {
 }
 
 const form = ref<SipAuth>({
-  uri: 'sip:5001@192.168.2.227',
-  realm: '192.168.2.227',
-  wsServers: 'ws://192.168.2.227:5066',
+  uri: 'sip:5001@192.168.2.200',
+  realm: '192.168.2.200',
+  wsServers: 'ws://192.168.2.200:5066',
   outboundProxy: '',
   authUser: '5001',
   password: '1234',
   displayName: 'SIPml5-Client',
 })
 
-const target = ref('sip:1413@192.168.2.227')
+const target = ref('sip:1413@192.168.2.200')
 
 const isRegistered = ref(false)
 const isCalling = ref(false)

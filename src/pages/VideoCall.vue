@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { ElForm, ElFormItem, ElInput, ElButton, ElCard, ElSwitch, ElDivider } from 'element-plus'
-import { useSipClient } from '../composables/useSipClient'
+import { useJsSipClient } from '../composables/useJsSipClient'
 
 type SipAuth = {
   uri: string
@@ -25,13 +25,13 @@ const localVideoRef = ref<HTMLVideoElement | null>(null)
 const remoteVideoRef = ref<HTMLVideoElement | null>(null)
 
 const { isRegistered, isCalling, register, unregister, makeCall, hangup, attachVideoElements } =
-  useSipClient()
+  useJsSipClient()
 
 onMounted(() => attachVideoElements({ local: localVideoRef, remote: remoteVideoRef }))
 onBeforeUnmount(() => unregister())
 
 const handleRegister = () => register(form.value)
-const handleCall = () => makeCall(target.value)
+const handleCall = () => makeCall(target.value, { audio: true, video: true })
 const handleHangup = () => hangup()
 </script>
 
